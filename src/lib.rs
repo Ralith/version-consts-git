@@ -27,10 +27,12 @@ pub fn generate() -> Result<()> {
     let repo = try!(Repository::open(".").chain_err(|| "couldn't open git repository"));
     let path = PathBuf::from(try!(env::var("OUT_DIR").chain_err(|| "couldn't get OUT_DIR"))).join("version.rs");
     let mut file = try!(File::create(&path).chain_err(|| format!("couldn't create {}", path.to_string_lossy())));
-    
-    let head = try!(repo.head().chain_err(|| "couldn't get git HEAD"));
-    let commit = try!(head.resolve().chain_err(|| "couldn't resolve git HEAD")).target().unwrap();
-    try!(format_commit(&mut file, commit).chain_err(|| format!("couldn't write to {}", path.to_string_lossy())));
+
+    // Guard against repositories in initial state
+    if let Ok(head) = repo.head() {
+        let commit = try!(head.resolve().chain_err(|| "couldn't resolve git HEAD")).target().unwrap();
+        try!(format_commit(&mut file, commit).chain_err(|| format!("couldn't write to {}", path.to_string_lossy())));
+    }
     
     Ok(())
 }

@@ -1,6 +1,6 @@
 [package]
 name = "version-consts-git"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Benjamin Saunders <ben.e.saunders@gmail.com>"]
 description = "Code generation for compiling in information about a crate's git status"
 repository = "https://github.com/Ralith/version-consts-git"
