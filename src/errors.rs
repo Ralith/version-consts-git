@@ -3,7 +3,7 @@ use git2;
 
 error_chain! {
     foreign_links {
-        io::Error, Io;
-        git2::Error, Git;
+        Io(io::Error);
+        Git(git2::Error);
     }
 }
