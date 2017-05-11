@@ -25,7 +25,7 @@ fn write_path<W: Write, P: AsRef<Path>>(out: &mut W, path: P) -> io::Result<usiz
 
 #[cfg(not(unix))]
 fn write_path<W: Write, P: AsRef<Path>>(out: &mut W, path: P) -> io::Result<usize> {
-    out.write(path.as_ref().to_str().expect("non-unicode path handling is unimplemented").as_bytes());
+    out.write(path.as_ref().to_str().expect("non-unicode path handling is unimplemented").as_bytes())
 }
 
 fn format_commit<W: Write>(out: &mut W, commit: Oid) -> io::Result<()> {
