@@ -6,17 +6,14 @@ use proc_macro_hack::proc_macro_hack;
 ///
 /// # Example
 /// ```
-/// use version_consts_git::version;
-/// fn main() {
-///     match version!() {
-///         None => eprintln!("not built from git"),
-///         Some(x) => {
-///             print!("{}", x.commit);
-///             if x.dirty {
-///                 println!(" (dirty)");
-///             } else {
-///                 println!();
-///             }
+/// match version_consts_git::version!() {
+///     None => eprintln!("not built from git"),
+///     Some(x) => {
+///         print!("{}", x.commit);
+///         if x.dirty {
+///             println!(" (dirty)");
+///         } else {
+///             println!();
 ///         }
 ///     }
 /// }
