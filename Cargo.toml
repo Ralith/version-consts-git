@@ -1,15 +1,13 @@
 [package]
 name = "version-consts-git"
-version = "0.1.3"
+version = "0.2.0"
 authors = ["Benjamin Saunders <ben.e.saunders@gmail.com>"]
 description = "Code generation for compiling in information about a crate's git status"
 repository = "https://github.com/Ralith/version-consts-git"
-license = "Apache-2.0"
+license = "MIT OR Apache-2.0"
+edition = "2018"
 keywords = ["git", "version"]
 
 [dependencies]
-error-chain = "0.10"
-
-[dependencies.git2]
-version = "0.6"
-default-features = false
+version-consts-git-impl = { path = "impl", version = "0.1" }
+proc-macro-hack = "0.5.4"
