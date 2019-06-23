@@ -15,9 +15,13 @@ struct Version {
 #[proc_macro_hack]
 pub fn version(tokens: TokenStream) -> TokenStream {
     assert!(tokens.is_empty(), "no arguments expected");
-    let root = env::var("CARGO_MANIFEST_DIR").unwrap();
-    let version = Repository::open(&root).ok().and_then(|r| from_repo(&r));
-    let dep_path = root + "/.git/logs/HEAD";
+    let repo = match Repository::discover(env::var("CARGO_MANIFEST_DIR").unwrap()) {
+        Ok(x) => x,
+        Err(_) => return TokenStream::from(quote! { None }),
+    };
+    let version = from_repo(&repo);
+    let dep_path = repo.path().join("logs/HEAD");
+    let dep_path = dep_path.to_str();
     let version = match version {
         None => quote! { None },
         Some(Version { commit, dirty }) => quote! {
@@ -25,7 +29,7 @@ pub fn version(tokens: TokenStream) -> TokenStream {
                 commit: version_consts_git::Commit([#(#commit),*]),
                 dirty: #dirty,
             })
-        }
+        },
     };
     TokenStream::from(quote! {
         {
