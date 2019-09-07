@@ -1,6 +1,6 @@
 [package]
 name = "version-consts-git-impl"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Benjamin Saunders <ben.e.saunders@gmail.com>"]
 description = "Implementation detail of version-consts-git"
 repository = "https://github.com/Ralith/version-consts-git"
