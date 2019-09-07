@@ -1,6 +1,6 @@
 [package]
 name = "version-consts-git-impl"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Benjamin Saunders <ben.e.saunders@gmail.com>"]
 description = "Implementation detail of version-consts-git"
 repository = "https://github.com/Ralith/version-consts-git"
@@ -11,7 +11,7 @@ edition = "2018"
 proc-macro = true
 
 [dependencies]
-quote = "0.6.11"
-proc-macro2 = "0.4.27"
+quote = "1.0"
+proc-macro2 = "1.0"
 proc-macro-hack = "0.5.4"
-git2 = { version = "0.9", default-features = false }
+git2 = { version = "0.10", default-features = false }
